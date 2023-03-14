@@ -1,0 +1,5 @@
+#!/bin/sh
+mem=$1;shift
+threads=$1;shift
+log=$1;shift
+bsub -q general -a "docker(scao/dailybox)" -M${mem}000000 -n${threads} -R "span[hosts=1] rusage[mem=${mem}000]" -oo ${log} "$@"
